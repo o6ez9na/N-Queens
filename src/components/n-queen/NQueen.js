@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
 import '../../App.css'; // Убедитесь, что путь правильный
 import ChessBoard from './ChessBoard';
-import ChartComponent from './ChartComponent';
+import CombinedChart from './CombinedChart'; // Импортируйте новый компонент
 import { simulatedAnnealing, objectiveFunction } from './SimulatedAnnealing';
+
 Chart.register(...registerables);
 
 const NQueens = () => {
@@ -123,13 +124,16 @@ const NQueens = () => {
         </div>
 
         <ChessBoard state={boardState} />
+          <div className="charts">
+          <CombinedChart
+            tempHistory={tempHistory}
+            errorHistory={errorHistory}
+            bestEnergyHistory={bestEnergyHistory}
+          />
+        </div>
       </div>
 
-      <div className="charts">
-        <ChartComponent data={tempHistory} title="Температура" color="blue" />
-        <ChartComponent data={errorHistory} title="Ошибки" color="red" />
-        <ChartComponent data={bestEnergyHistory} title="Лучшая энергия" color="green" />
-      </div>
+      
     </div>
   );
 };
