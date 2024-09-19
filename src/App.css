@@ -54,15 +54,31 @@ input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Тень для шахматной доски */
+
 }
 
 .run-button {
   padding: 10px;
   background-color: #4caf50;
+  border-radius: 30px;
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Добавляем плавный переход */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Тень для шахматной доски */
+
 }
+
+.run-button:hover {
+  background-color: #388e3c; /* Цвет станет темнее при наведении */
+}
+
+.run-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 
 .run-button:disabled {
   background-color: #ccc;
@@ -82,6 +98,8 @@ input {
   border-radius: 50px;
   margin-left: 20px;
   overflow: hidden; /* Это важно для скругленных углов */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Тень для шахматной доски */
+
 }
 
 .cell {
@@ -149,13 +167,8 @@ input {
   justify-content: center;
   gap: 30px;
   margin-top: 20px;
-  width: 100%;
+  width: 50%;
   flex-wrap: nowrap;
 }
 
-.chart {
-  width: 30vw; /* Используйте проценты для адаптивности */
-  height: 30vh; /* Соответствующая высота для сохранения пропорций */
-  max-width: 300px; /* Ограничение максимальной ширины */
-  max-height: 355px; /* Ограничение максимальной высоты */
-}
+

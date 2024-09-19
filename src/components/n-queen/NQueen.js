@@ -20,6 +20,14 @@ const NQueens = () => {
   const [maxIterations, setIterations] = useState(1000);
   const [isRunning, setIsRunning] = useState(false);
 
+  // Генерация пустой доски n x n
+  const generateEmptyBoard = (size) => Array.from({ length: size }, () => Array(size).fill(null));
+
+  useEffect(() => {
+    // Изначально отображаем пустую доску
+    setBoardState(generateEmptyBoard(nQueens));
+  }, [nQueens]);
+
   const runSimulation = async () => {
     setIsRunning(true);
     const initialState = Array.from({ length: nQueens }, () =>
@@ -42,10 +50,6 @@ const NQueens = () => {
 
     setIsRunning(false);
   };
-
-  useEffect(() => {
-    runSimulation(); // Запускаем симуляцию при начальной загрузке
-  }, [initialTemp, minTemp, coolingRate, nQueens, stepsPerTemp, maxIterations]);
 
   return (
     <div className="app">
@@ -124,7 +128,7 @@ const NQueens = () => {
         </div>
 
         <ChessBoard state={boardState} />
-          <div className="charts">
+        <div className="charts">
           <CombinedChart
             tempHistory={tempHistory}
             errorHistory={errorHistory}
@@ -132,8 +136,6 @@ const NQueens = () => {
           />
         </div>
       </div>
-
-      
     </div>
   );
 };
